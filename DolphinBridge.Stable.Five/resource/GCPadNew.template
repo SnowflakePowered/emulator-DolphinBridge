@@ -1,0 +1,27 @@
+[GCPad{N}]
+Device = {Device}
+Buttons/A = {Buttons/A}
+Buttons/B = {Buttons/B}
+Buttons/X = {Buttons/X}
+Buttons/Y = {Buttons/Y}
+Buttons/Z = {Buttons/Z}
+Buttons/Start = {Buttons/Start}
+MainStick/Radius = {MainStick/Radius}
+MainStick/Up = {MainStick/Up}
+MainStick/Down = {MainStick/Down}
+MainStick/Left = {MainStick/Left}
+MainStick/Right = {MainStick/Right}
+MainStick/Modifier = {MainStick/Modifier}
+MainStick/Modifier/Range = {MainStick/Modifier/Range}
+C-Stick/Up = {C-Stick/Up}
+C-Stick/Down = {C-Stick/Down}
+C-Stick/Left = {C-Stick/Left}
+C-Stick/Right = {C-Stick/Right}
+C-Stick/Modifier = {C-Stick/Modifier}
+C-Stick/Modifier/Range = {C-Stick/Modifier/Range}
+Triggers/L = {Triggers/L}
+Triggers/R = {Triggers/R}
+D-Pad/Up = {D-Pad/Up}
+D-Pad/Down = {D-Pad/Down}
+D-Pad/Left = {D-Pad/Left}
+D-Pad/Right = {D-Pad/Right}

@@ -1,0 +1,6 @@
+{
+	"main": "Dolphin.exe",
+	"id": "dolphin-5",
+	"name": "Dolphin 5.0",
+	"type": "EMULATOR_EXECUTABLE"
+}
