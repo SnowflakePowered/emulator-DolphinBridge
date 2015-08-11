@@ -1,1 +1,174 @@
-{"VSync":{"description":"description","defaultValue":false},"Adapter":{"description":"description","defaultValue":0},"AspectRatio":{"description":"description","defaultValue":0},"Crop":{"description":"description","defaultValue":false},"wideScreenHack":{"description":"description","defaultValue":false},"UseXFB":{"description":"description","defaultValue":false},"UseRealXFB":{"description":"description","defaultValue":false},"SafeTextureCacheColorSamples":{"description":"description","defaultValue":128},"ShowFPS":{"description":"description","defaultValue":false},"LogRenderTimeToFile":{"description":"description","defaultValue":false},"OverlayStats":{"description":"description","defaultValue":false},"OverlayProjStats":{"description":"description","defaultValue":false},"DumpTextures":{"description":"description","defaultValue":false},"HiresTextures":{"description":"description","defaultValue":false},"ConvertHiresTextures":{"description":"description","defaultValue":false},"CacheHiresTextures":{"description":"description","defaultValue":false},"DumpEFBTarget":{"description":"description","defaultValue":false},"FreeLook":{"description":"description","defaultValue":false},"UseFFV1":{"description":"description","defaultValue":false},"EnablePixelLighting":{"description":"description","defaultValue":false},"FastDepthCalc":{"description":"description","defaultValue":true},"ShowEFBCopyRegions":{"description":"description","defaultValue":false},"MSAA":{"description":"description","defaultValue":0},"EFBScale":{"description":"description","defaultValue":2},"TexFmtOverlayEnable":{"description":"description","defaultValue":false},"TexFmtOverlayCenter":{"description":"description","defaultValue":false},"Wireframe":{"description":"description","defaultValue":false},"DstAlphaPass":{"description":"description","defaultValue":false},"DisableFog":{"description":"description","defaultValue":false},"EnableShaderDebugging":{"description":"description","defaultValue":false},"BorderlessFullscreen":{"description":"description","defaultValue":false},"ForceFiltering":{"description":"description","defaultValue":false},"MaxAnisotropy":{"description":"description","defaultValue":0},"PostProcessingShader":{"description":"description","defaultValue":""},"StereoMode":{"description":"description","defaultValue":0},"StereoDepth":{"description":"description","defaultValue":20},"StereoConvergence":{"description":"description","defaultValue":20},"StereoSwapEyes":{"description":"description","defaultValue":false},"EFBAccessEnable":{"description":"description","defaultValue":true},"BBoxEnable":{"description":"description","defaultValue":false},"EFBToTextureEnable":{"description":"description","defaultValue":true},"EFBScaledCopy":{"description":"description","defaultValue":true},"EFBEmulateFormatChanges":{"description":"description","defaultValue":false}}
+{
+    "VSync": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "Adapter": {
+        "description": "description",
+        "defaultValue": 0
+    },
+    "AspectRatio": {
+        "description": "description",
+        "defaultValue": 0
+    },
+    "Crop": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "wideScreenHack": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "UseXFB": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "UseRealXFB": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "SafeTextureCacheColorSamples": {
+        "description": "description",
+        "defaultValue": 128
+    },
+    "ShowFPS": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "LogRenderTimeToFile": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "OverlayStats": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "OverlayProjStats": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "DumpTextures": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "HiresTextures": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "ConvertHiresTextures": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "CacheHiresTextures": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "DumpEFBTarget": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "FreeLook": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "UseFFV1": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "EnablePixelLighting": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "FastDepthCalc": {
+        "description": "description",
+        "defaultValue": true
+    },
+    "ShowEFBCopyRegions": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "MSAA": {
+        "description": "description",
+        "defaultValue": 0
+    },
+    "EFBScale": {
+        "description": "description",
+        "defaultValue": 2
+    },
+    "TexFmtOverlayEnable": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "TexFmtOverlayCenter": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "Wireframe": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "DstAlphaPass": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "DisableFog": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "EnableShaderDebugging": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "BorderlessFullscreen": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "ForceFiltering": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "MaxAnisotropy": {
+        "description": "description",
+        "defaultValue": 0
+    },
+    "PostProcessingShader": {
+        "description": "description",
+        "defaultValue": ""
+    },
+    "StereoMode": {
+        "description": "description",
+        "defaultValue": 0
+    },
+    "StereoDepth": {
+        "description": "description",
+        "defaultValue": 20
+    },
+    "StereoConvergence": {
+        "description": "description",
+        "defaultValue": 20
+    },
+    "StereoSwapEyes": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "EFBAccessEnable": {
+        "description": "description",
+        "defaultValue": true
+    },
+    "BBoxEnable": {
+        "description": "description",
+        "defaultValue": false
+    },
+    "EFBToTextureEnable": {
+        "description": "description",
+        "defaultValue": true
+    },
+    "EFBScaledCopy": {
+        "description": "description",
+        "defaultValue": true
+    },
+    "EFBEmulateFormatChanges": {
+        "description": "description",
+        "defaultValue": false
+    }
+}
