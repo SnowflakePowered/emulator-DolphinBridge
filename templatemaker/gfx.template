@@ -1,0 +1,47 @@
+[Hardware]
+VSync = {VSync}
+Adapter = {Adapter}
+[Settings]
+AspectRatio = {AspectRatio}
+Crop = {Crop}
+wideScreenHack = {wideScreenHack}
+UseXFB = {UseXFB}
+UseRealXFB = {UseRealXFB}
+SafeTextureCacheColorSamples = {SafeTextureCacheColorSamples}
+ShowFPS = {ShowFPS}
+LogRenderTimeToFile = {LogRenderTimeToFile}
+OverlayStats = {OverlayStats}
+OverlayProjStats = {OverlayProjStats}
+DumpTextures = {DumpTextures}
+HiresTextures = {HiresTextures}
+ConvertHiresTextures = {ConvertHiresTextures}
+CacheHiresTextures = {CacheHiresTextures}
+DumpEFBTarget = {DumpEFBTarget}
+FreeLook = {FreeLook}
+UseFFV1 = {UseFFV1}
+EnablePixelLighting = {EnablePixelLighting}
+FastDepthCalc = {FastDepthCalc}
+ShowEFBCopyRegions = {ShowEFBCopyRegions}
+MSAA = {MSAA}
+EFBScale = {EFBScale}
+TexFmtOverlayEnable = {TexFmtOverlayEnable}
+TexFmtOverlayCenter = {TexFmtOverlayCenter}
+Wireframe = {Wireframe}
+DstAlphaPass = {DstAlphaPass}
+DisableFog = {DisableFog}
+EnableShaderDebugging = {EnableShaderDebugging}
+BorderlessFullscreen = {BorderlessFullscreen}
+[Enhancements]
+ForceFiltering = {ForceFiltering}
+MaxAnisotropy = {MaxAnisotropy}
+PostProcessingShader = {PostProcessingShader}
+StereoMode = {StereoMode}
+StereoDepth = {StereoDepth}
+StereoConvergence = {StereoConvergence}
+StereoSwapEyes = {StereoSwapEyes}
+[Hacks]
+EFBAccessEnable = {EFBAccessEnable}
+BBoxEnable = {BBoxEnable}
+EFBToTextureEnable = {EFBToTextureEnable}
+EFBScaledCopy = {EFBScaledCopy}
+EFBEmulateFormatChanges = {EFBEmulateFormatChanges}
