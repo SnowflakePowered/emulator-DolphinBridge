@@ -44,15 +44,16 @@
             "DOLPHIN_WII_CLASSIC_RANALOG_DOWN",
             "DOLPHIN_WII_CLASSIC_RANALOG_LEFT",
             "DOLPHIN_WII_CLASSIC_RANALOG_RIGHT",
-            "DOLPHIN_WII_CLASSIC_L1",
-            "DOLPHIN_WII_CLASSIC_R1",
-            "DOLPHIN_WII_CLASSIC_ANALOG_L2",
-            "DOLPHIN_WII_CLASSIC_ANALOG_R2",
+            "DOLPHIN_WII_CLASSIC_L",
+            "DOLPHIN_WII_CLASSIC_R",
+            "DOLPHIN_WII_CLASSIC_ANALOG_L",
+            "DOLPHIN_WII_CLASSIC_ANALOG_R",
             "DOLPHIN_WII_CLASSIC_DPAD_UP",
             "DOLPHIN_WII_CLASSIC_DPAD_DOWN",
             "DOLPHIN_WII_CLASSIC_DPAD_LEFT",
             "DOLPHIN_WII_CLASSIC_DPAD_RIGHT",
-            "SOURCE"
+            "SOURCE",
+            "EXTENSION"
         ],
         "nobind": "",
         "gamepad": {
