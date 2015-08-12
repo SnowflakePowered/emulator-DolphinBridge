@@ -1,0 +1,14 @@
+﻿{
+    "name": "DolphinBridge-Stable-5",
+    "type": "plugin_emulator",
+    "version": "1.0.0.0",
+    "authors": [
+        "Snowflake"
+    ],
+    "description": "Dolphin 5.0",
+    "platforms": [
+      "NINTENDO_WII",
+      "NINTENDO_GC"
+    ],
+    "emulator_assembly":  "dolphin-5"
+}
