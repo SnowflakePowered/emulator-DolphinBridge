@@ -71,12 +71,12 @@
       <HintPath>..\packages\SharpYaml.1.4.0\lib\SharpYaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Snowflake, Version=0.1.541.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Snowflake.0.1.541-pre-alpha-nightly\lib\net45\Snowflake.dll</HintPath>
+    <Reference Include="Snowflake, Version=0.1.567.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Snowflake.0.1.567-pre-alpha-nightly\lib\net45\Snowflake.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Snowflake.API, Version=0.1.541.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Snowflake.API.0.1.541-pre-alpha-nightly\lib\net45\Snowflake.API.dll</HintPath>
+    <Reference Include="Snowflake.API, Version=0.1.567.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Snowflake.API.0.1.567-pre-alpha-nightly\lib\net45\Snowflake.API.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Snowflake.InputManager, Version=0.1.541.0, Culture=neutral, processorArchitecture=MSIL">
@@ -113,9 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="NLog.config" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
