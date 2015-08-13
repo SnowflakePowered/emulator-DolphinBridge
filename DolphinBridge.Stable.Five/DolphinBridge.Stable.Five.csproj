@@ -126,6 +126,7 @@
     <EmbeddedResource Include="resource\input.json" />
     <EmbeddedResource Include="resource\plugin.json" />
     <EmbeddedResource Include="resource\controllers.json" />
+    <EmbeddedResource Include="resource\flags.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

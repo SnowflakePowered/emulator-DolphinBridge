@@ -1,0 +1,210 @@
+﻿[
+  {
+    "key": "wiimote_extension",
+    "type": "SELECT_FLAG",
+    "description": "Wiimote Extension",
+    "default": "0",
+    "values": [
+      {
+        "value": "None",
+        "description": "None"
+      },
+      {
+        "value": "Nunchuck",
+        "description": "Nunchuck"
+      },
+      {
+        "value": "Classic",
+        "description": "Classic Controller"
+      }
+    ]
+  },
+  {
+    "key": "fullscreen_mode",
+    "type": "SELECT_FLAG",
+    "description": "Fullscreen",
+    "default": "0",
+    "values": [
+      {
+        "value": "Windowed",
+        "description": "Windowed"
+      },
+      {
+        "value": "Borderless",
+        "description": "Borderless Windowed"
+      },
+      {
+        "value": "Fullscreen",
+        "description": "Fullscreen"
+      }
+    ]
+  },
+  {
+    "key": "video_backend",
+    "type": "SELECT_FLAG",
+    "description": "Video Backend",
+    "default": "0",
+    "values": [
+      {
+        "value": "OGL",
+        "description": "OpenGL"
+      },
+      {
+        "value": "D3D",
+        "description": "Direct3D 11"
+      }
+    ]
+  },
+  {
+    "key": "internal_res",
+    "type": "SELECT_FLAG",
+    "description": "Internal Resolution",
+    "default": "0",
+    "values": [
+      {
+        "value": "1",
+        "description": "1x"
+      },
+      {
+        "value": "2",
+        "description": "2x"
+      },
+      {
+        "value": "4",
+        "description": "4x"
+      },
+      {
+        "value": "6",
+        "description": "6x"
+      },
+      {
+        "value": "8",
+        "description": "8x"
+      }
+    ]
+  },
+  {
+    "key": "per_pixel_lighting",
+    "type": "BOOLEAN_FLAG",
+    "description": "Per Pixel Lighting",
+    "default": "false"
+  },
+  {
+    "key": "vsync",
+    "type": "BOOLEAN_FLAG",
+    "description": "V-Sync",
+    "default": "false"
+  },
+  {
+    "key": "fps",
+    "type": "BOOLEAN_FLAG",
+    "description": "FPS COunter",
+    "default": "false"
+  },
+  {
+    "key": "aspect_ratio",
+    "type": "SELECT_FLAG",
+    "description": "Aspect Ratio",
+    "default": "0",
+    "values": [
+      {
+        "value": "Auto",
+        "description": "Auto"
+      },
+      {
+        "value": "169",
+        "description": "Force 16:9"
+      },
+      {
+        "value": "43",
+        "description": "Force 4:3"
+      },
+      {
+        "value": "Fit to Window",
+        "description": "Fit to Window"
+      }
+    ]
+  },
+  {
+    "key": "antialiasing_mode",
+    "type": "SELECT_FLAG",
+    "description": "Anti Aliasing",
+    "default": "0",
+    "values": [
+      {
+        "value": "None",
+        "description": "None"
+      },
+      {
+        "value": "2x",
+        "description": "2x MSAA"
+      },
+      {
+        "value": "4x",
+        "description": "4x MSAA"
+      },
+      {
+        "value": "8x",
+        "description": "8x MSAA"
+      },
+      {
+        "value": "2xSSAA",
+        "description": "2x SSAA"
+      }
+    ]
+  },
+  {
+    "key": "anisotropic_filtering",
+    "type": "SELECT_FLAG",
+    "description": "Anisotropic Filtering",
+    "default": "0",
+    "values": [
+      {
+        "value": "1x",
+        "description": "1x"
+      },
+      {
+        "value": "2x",
+        "description": "2x"
+      },
+      {
+        "value": "4x",
+        "description": "4x"
+      },
+      {
+        "value": "8x",
+        "description": "8x"
+      },
+      {
+        "value": "16x",
+        "description": "16x"
+      }
+    ]
+  },
+  {
+    "key": "crop",
+    "type": "BOOLEAN_FLAG",
+    "description": "Crop Black Bars",
+    "default": "true"
+  },
+  {
+    "key": "audio_mode",
+    "type": "SELECT_FLAG",
+    "description": "Audio Mode",
+    "default": "0",
+    "values": [
+      {
+        "value": "HLE",
+        "description": "HLE Audio"
+      },
+      {
+        "value": "LLE",
+        "description": "LLE Audio"
+      },
+      {
+        "value": "LLEThreaded",
+        "description": "Threaded LLE"
+      }
+    ]
+  }
+]
