@@ -124,7 +124,7 @@
   {
     "key": "fps",
     "type": "BOOLEAN_FLAG",
-    "description": "FPS COunter",
+    "description": "FPS Counter",
     "default": "false"
   },
   {
