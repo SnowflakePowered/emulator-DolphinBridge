@@ -3,7 +3,7 @@
     "key": "wiimote_extension",
     "type": "SELECT_FLAG",
     "description": "Wiimote Extension",
-    "default": "0",
+    "default": "1",
     "values": [
       {
         "value": "None",
@@ -20,6 +20,12 @@
     ]
   },
   {
+    "key": "speakerdata",
+    "type": "BOOLEAN_FLAG",
+    "description": "Real Wiimote Speaker Data",
+    "default": "false"
+  },
+  {
     "key": "fullscreen_mode",
     "type": "SELECT_FLAG",
     "description": "Fullscreen",
@@ -30,7 +36,7 @@
         "description": "Windowed"
       },
       {
-        "value": "Borderless",
+        "value": "BorderlessFullscreen",
         "description": "Borderless Windowed"
       },
       {
@@ -62,25 +68,45 @@
     "default": "0",
     "values": [
       {
+        "value": "0",
+        "description": "Auto (Window Size)"
+      },
+      {
         "value": "1",
-        "description": "1x"
+        "description": "Auto (Multiple of 640x528)"
       },
       {
         "value": "2",
-        "description": "2x"
+        "description": "Native (640x528)"
+      },
+      {
+        "value": "3",
+        "description": "1.5x Native (960x792)"
       },
       {
         "value": "4",
-        "description": "4x"
+        "description": "2x Native (1280x1056) for 720p"
+      },
+      {
+        "value": "5",
+        "description": "2.5x Native (1600x1320)"
       },
       {
         "value": "6",
-        "description": "6x"
+        "description": "3x Native (1920x1584) for 1080p"
+      },
+      {
+        "value": "7",
+        "description": "4x Native (2560x2112) for 1440p"
       },
       {
         "value": "8",
-        "description": "8x"
-      }
+        "description": "5x Native (3200x2640)"
+      },
+      {
+        "value": "9",
+        "description": "6x (3840x3168) for 4K"
+      },
     ]
   },
   {
@@ -102,26 +128,32 @@
     "default": "false"
   },
   {
+    "key": "widescreen_hack",
+    "type": "BOOLEAN_FLAG",
+    "description": "Widescreen Hack (Forces 16:9)",
+    "default": "false"
+  },
+  {
     "key": "aspect_ratio",
     "type": "SELECT_FLAG",
     "description": "Aspect Ratio",
     "default": "0",
     "values": [
       {
-        "value": "Auto",
+        "value": "0",
         "description": "Auto"
       },
       {
-        "value": "169",
+        "value": "1",
         "description": "Force 16:9"
       },
       {
-        "value": "43",
+        "value": "2",
         "description": "Force 4:3"
       },
       {
-        "value": "Fit to Window",
-        "description": "Fit to Window"
+        "value": "3",
+        "description": "Stretch to Window"
       }
     ]
   },
@@ -136,20 +168,20 @@
         "description": "None"
       },
       {
-        "value": "2x",
+        "value": "2xMSAA",
         "description": "2x MSAA"
       },
       {
-        "value": "4x",
+        "value": "4xMSAA",
         "description": "4x MSAA"
       },
       {
-        "value": "8x",
+        "value": "8xMSAA",
         "description": "8x MSAA"
       },
       {
         "value": "2xSSAA",
-        "description": "2x SSAA"
+        "description": "2x SSAA (OpenGL Only)"
       }
     ]
   },
@@ -160,23 +192,23 @@
     "default": "0",
     "values": [
       {
-        "value": "1x",
+        "value": "0",
         "description": "1x"
       },
       {
-        "value": "2x",
+        "value": "1",
         "description": "2x"
       },
       {
-        "value": "4x",
+        "value": "2",
         "description": "4x"
       },
       {
-        "value": "8x",
+        "value": "3",
         "description": "8x"
       },
       {
-        "value": "16x",
+        "value": "4",
         "description": "16x"
       }
     ]
@@ -188,23 +220,17 @@
     "default": "true"
   },
   {
-    "key": "audio_mode",
-    "type": "SELECT_FLAG",
-    "description": "Audio Mode",
-    "default": "0",
-    "values": [
-      {
-        "value": "HLE",
-        "description": "HLE Audio"
-      },
-      {
-        "value": "LLE",
-        "description": "LLE Audio"
-      },
-      {
-        "value": "LLEThreaded",
-        "description": "Threaded LLE"
-      }
-    ]
+    "key": "hle_audio",
+    "type": "BOOLEAN_FLAG",
+    "description": "HLE Audio",
+    "default": "true"
+  },
+  {
+    "key": "cpu_oc",
+    "type": "INTEGER_FLAG",
+    "description": "CPU Clock Factor",
+    "default": 100,
+    "RangeMin": 10,
+    "RangeMax": 300
   }
 ]
