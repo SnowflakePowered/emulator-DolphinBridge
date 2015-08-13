@@ -22,11 +22,10 @@ using Snowflake.Service;
 namespace DolphinBridge.Stable.Five
 {
   
-    public abstract class DolphinBridge : EmulatorBridge
+    public class DolphinBridge : EmulatorBridge
     {
-        protected string coreName;
-
-        protected DolphinBridge([Import("coreInstance")] ICoreService coreInstance) : 
+        [ImportingConstructor]
+        public DolphinBridge([Import("coreInstance")] ICoreService coreInstance) : 
             base(Assembly.GetExecutingAssembly(), coreInstance)
         {
 
@@ -44,7 +43,7 @@ namespace DolphinBridge.Stable.Five
             //todo implement this for dolphin
         }
         
-        protected virtual void ProcessFlags(IGameInfo game, ref IConfigurationProfile configurationProfile)
+        public void ProcessFlags(IGameInfo game, ref IConfigurationProfile configurationProfile)
         {
   
         }
@@ -63,5 +62,9 @@ namespace DolphinBridge.Stable.Five
             this.dolphinInstance.CloseMainWindow();
         }
 
+        public override void HandlePrompt(string messagge)
+        {
+            return;
+        }
     }
 }
