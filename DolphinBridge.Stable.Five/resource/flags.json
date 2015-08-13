@@ -106,7 +106,7 @@
       {
         "value": "9",
         "description": "6x (3840x3168) for 4K"
-      },
+      }
     ]
   },
   {
@@ -230,7 +230,7 @@
     "type": "INTEGER_FLAG",
     "description": "CPU Clock Factor",
     "default": 100,
-    "RangeMin": 10,
-    "RangeMax": 300
+    "max": 10,
+    "min": 300
   }
 ]
