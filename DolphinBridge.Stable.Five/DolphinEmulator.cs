@@ -43,14 +43,94 @@ namespace DolphinBridge.Stable.Five
             //todo implement this for dolphin
         }
         
-        public void ProcessFlags(IGameInfo game, ref IConfigurationProfile configurationProfile)
+        void ProcessExtension(IGameInfo game, ref IConfigurationProfile configurationProfile)
         {
-  
+            int wiimote_extension = this.ConfigurationFlagStore.GetValue(game, "wiimote_extension", ConfigurationFlagTypes.SELECT_FLAG);
+            configurationProfile.ConfigurationValues["Extension"] = this.ConfigurationFlags["wiimote_extension"].SelectValues[wiimote_extension];
+        }
+
+
+        void ProcessFlags(IGameInfo game, ref IConfigurationProfile dolphinCore, ref IConfigurationProfile dolphinGfx)
+        {
+
+            var core_speakerdata = this.ConfigurationFlagStore.GetValue(game, "speakerdata", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinCore.ConfigurationValues["WiimoteEnableSpeaker"] = core_speakerdata;
+
+            var core_fullscreen = this.ConfigurationFlagStore.GetValue(game, "fullscreen_mode", ConfigurationFlagTypes.SELECT_FLAG);
+            dolphinCore.ConfigurationValues["Fullscreen"] = this.ConfigurationFlags["fullscreen_mode"].SelectValues[core_fullscreen];
+
+            var core_backend = this.ConfigurationFlagStore.GetValue(game, "video_backend", ConfigurationFlagTypes.SELECT_FLAG);
+            dolphinGfx.ConfigurationValues["GFXBackend"] = this.ConfigurationFlags["video_backend"].SelectValues[core_backend];
+
+            var core_hle_audio = this.ConfigurationFlagStore.GetValue(game, "hle_audio", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinCore.ConfigurationValues["DSPHLE"] = core_hle_audio;
+
+            var core_cpu_oc = this.ConfigurationFlagStore.GetValue(game, "cpu_oc", ConfigurationFlagTypes.INTEGER_FLAG);
+            dolphinCore.ConfigurationValues["OverclockEnable"] = (core_cpu_oc == 100);
+            dolphinCore.ConfigurationValues["Overclock"] = core_cpu_oc / 100d;
+
+            var gfx_internal_res = this.ConfigurationFlagStore.GetValue(game, "internal_res", ConfigurationFlagTypes.SELECT_FLAG);
+            dolphinGfx.ConfigurationValues["EFBScale"] = this.ConfigurationFlags["internal_res"].SelectValues[gfx_internal_res];
+
+            var gfx_per_pixel_lighting = this.ConfigurationFlagStore.GetValue(game, "per_pixel_lighting", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinGfx.ConfigurationValues["EnablePixelLighting"] = gfx_per_pixel_lighting;
+
+            var gfx_vsync = this.ConfigurationFlagStore.GetValue(game, "vsync", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinGfx.ConfigurationValues["VSync"] = gfx_vsync;
+
+            var gfx_fps = this.ConfigurationFlagStore.GetValue(game, "fps", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinGfx.ConfigurationValues["ShowFPS"] = gfx_fps;
+
+            var gfx_widescreen_hack = this.ConfigurationFlagStore.GetValue(game, "widescreen_hack", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinGfx.ConfigurationValues["widescreenHack"] = gfx_widescreen_hack;
+
+            var gfx_aspect_ratio = this.ConfigurationFlagStore.GetValue(game, "aspect_ratio", ConfigurationFlagTypes.SELECT_FLAG);
+            dolphinGfx.ConfigurationValues["AspectRatio"] = this.ConfigurationFlags["aspect_ratio"].SelectValues[gfx_aspect_ratio];
+
+            var gfx_anisotropic_filtering = this.ConfigurationFlagStore.GetValue(game, "anisotropic_filtering", ConfigurationFlagTypes.SELECT_FLAG);
+            dolphinGfx.ConfigurationValues["MaxAnisotropy"] = this.ConfigurationFlags["anisotropic_filtering"].SelectValues[gfx_anisotropic_filtering];
+
+            var gfx_crop = this.ConfigurationFlagStore.GetValue(game, "crop", ConfigurationFlagTypes.BOOLEAN_FLAG);
+            dolphinGfx.ConfigurationValues["Crop"] = gfx_crop;
+
+            var gfx_antialiasing_mode = this.ConfigurationFlagStore.GetValue(game, "antialiasing_mode", ConfigurationFlagTypes.SELECT_FLAG);
+          
+            var oglMSAALevels = new string[5] {
+                "0", /* None */
+                "1", /* 2x MSAA */
+                "2", /* 4x MSAA */
+                "3", /* 8x MSAA */
+                "4" /* 2xSSAA */
+            };
+
+            var dxMSAALevels = new string[5] {
+                "0", /* None */
+                "1", /*Level 2 */
+                "4", /* Level 4 */
+                "21", /* Level 8 */
+                "53" /* Level 8 (32 Samples) */
+            };
+            switch (core_backend as string)
+            {
+                case "D3D":
+                    dolphinGfx.ConfigurationValues["MSAA"] = dxMSAALevels[gfx_aspect_ratio];
+                    break;
+                case "OGL":
+                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_aspect_ratio];
+                    break;
+                default:
+                    //If for some reason the backend value is broken, use opengl on the safe side
+                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_aspect_ratio]; 
+                    break;
+            }
+
+
+
+
+
         }
 
         /* Win32 Start */
-        [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
         /* Win32 End */
         public override string CompileController(int playerIndex, IPlatformInfo platformInfo, IControllerDefinition controllerDefinition, IControllerTemplate controllerTemplate, IGamepadAbstraction gamepadAbstraction, IInputTemplate inputTemplate, IGameInfo game)
         {
