@@ -22,10 +22,10 @@ using Snowflake.Service;
 namespace DolphinBridge.Stable.Five
 {
   
-    public class DolphinBridge : EmulatorBridge
+    public class DolphinEmulator : EmulatorBridge
     {
         [ImportingConstructor]
-        public DolphinBridge([Import("coreInstance")] ICoreService coreInstance) : 
+        public DolphinEmulator([Import("coreInstance")] ICoreService coreInstance) : 
             base(Assembly.GetExecutingAssembly(), coreInstance)
         {
 
@@ -40,9 +40,36 @@ namespace DolphinBridge.Stable.Five
 
         public override void StartRom(IGameInfo game)
         {
-            //todo implement this for dolphin
+            var platform = this.CoreInstance.LoadedPlatforms[game.PlatformID];
+            string emulatorPath =
+                Path.Combine(this.CoreInstance.EmulatorManager.GetAssemblyDirectory(this.EmulatorAssembly), this.EmulatorAssembly.MainAssembly);
+            
+            var gfxConfigProfile = this.ConfigurationTemplates[DolphinEmulator.dolphinGFXTemplate].ConfigurationStore.GetConfigurationProfile(game);
+            var coreConfigProfile = this.ConfigurationTemplates[DolphinEmulator.dolphinCoreTemplate].ConfigurationStore.GetConfigurationProfile(game);
+
+
+            this.ProcessFlags(game, ref coreConfigProfile, ref gfxConfigProfile);
+
+            //compile configuration
+            string coreCfg = this.CompileConfiguration(this.ConfigurationTemplates[DolphinEmulator.dolphinCoreTemplate], coreConfigProfile, game);
+
+            string gfxCfg = this.CompileConfiguration(this.ConfigurationTemplates[DolphinEmulator.dolphinGFXTemplate], gfxConfigProfile, game);
+
+            
+
+            for (int i = 1; i <= platform.MaximumInputs; i++)
+            {
+                 //do for dolphin
+                if (platform.PlatformID == "NINTENDO_GCN")
+                {
+                    string controller = this.CompileController(i, platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
+                }
+            }
+
+
         }
         
+       
         void ProcessExtension(IGameInfo game, ref IConfigurationProfile configurationProfile)
         {
             int wiimote_extension = this.ConfigurationFlagStore.GetValue(game, "wiimote_extension", ConfigurationFlagTypes.SELECT_FLAG);
@@ -113,14 +140,14 @@ namespace DolphinBridge.Stable.Five
             switch (core_backend as string)
             {
                 case "D3D":
-                    dolphinGfx.ConfigurationValues["MSAA"] = dxMSAALevels[gfx_aspect_ratio];
+                    dolphinGfx.ConfigurationValues["MSAA"] = dxMSAALevels[gfx_antialiasing_mode];
                     break;
                 case "OGL":
-                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_aspect_ratio];
+                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_antialiasing_mode];
                     break;
                 default:
                     //If for some reason the backend value is broken, use opengl on the safe side
-                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_aspect_ratio]; 
+                    dolphinGfx.ConfigurationValues["MSAA"] = oglMSAALevels[gfx_antialiasing_mode]; 
                     break;
             }
 
