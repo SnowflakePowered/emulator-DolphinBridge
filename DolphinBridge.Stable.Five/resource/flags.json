@@ -26,6 +26,12 @@
     "default": "false"
   },
   {
+    "key": "dualcore",
+    "type": "BOOLEAN_FLAG",
+    "description": "Dual-Core Speedup",
+    "default": "true"
+  },
+  {
     "key": "fullscreen_mode",
     "type": "SELECT_FLAG",
     "description": "Fullscreen",
