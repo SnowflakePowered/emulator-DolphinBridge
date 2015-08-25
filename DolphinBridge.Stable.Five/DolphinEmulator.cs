@@ -67,9 +67,11 @@ namespace DolphinBridge.Stable.Five
 
             string gfxCfg = this.CompileConfiguration(this.ConfigurationTemplates[DolphinEmulator.dolphinGFXTemplate], gfxConfigProfile, game);
 
-            
+            File.WriteAllText(Path.Combine(this.PluginDataPath, "gfx.ini"), gfxCfg);
 
-            if(platform.PlatformID == StonePlatforms.NINTENDO_WII)
+            File.WriteAllText(Path.Combine(this.PluginDataPath, "core.ini"), coreCfg);
+
+            if (platform.PlatformID == StonePlatforms.NINTENDO_WII)
             {
                 for (int i = 1; i <= 4; i++)
                 { 
@@ -79,7 +81,7 @@ namespace DolphinBridge.Stable.Five
                 }
                 for (int i = 5; i <= 8; i++)
                 {
-                    string controller = this.CompileController(i, platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
+                    string controller = this.CompileController((i-4), platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
                     File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
 
@@ -90,9 +92,11 @@ namespace DolphinBridge.Stable.Five
                 for (int i = 1; i <= platform.MaximumInputs; i++)
                 {
                     string controller = this.CompileController(i, platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
-                    File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini"), Environment.NewLine + controller);
+                    File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
-            }            
+            }
+
+
         }
         
 
@@ -188,7 +192,7 @@ namespace DolphinBridge.Stable.Five
             IList<IInputDevice> devices = new InputManager().GetGamepads();
             if (deviceName == null) deviceName = String.Empty;
 
-            int realWiimoteAmount = devices.Where(device => device.DI_ProductName.Contains("RVL-CNT")).Count();
+            int realWiimoteAmount = devices.Count(device => device.DI_ProductName.Contains("RVL-CNT"));
 
             if(controllerDefinition.ControllerID == "WII_COMBINED_CONTROLLER")
             {

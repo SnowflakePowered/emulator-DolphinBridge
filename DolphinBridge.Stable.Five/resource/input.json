@@ -188,8 +188,8 @@
                 "MOUSE_LCLICK": "`Click 0`",
                 "MOUSE_RCLICK": "`Click 1`",
                 "MOUSE_MCLICK": "`Click 2`",
-                "MOUSE_WHEELUP": "",
-                "MOUSE_WHEELDOWN": ""
+                "MOUSE_WHEELUP": "nul",
+                "MOUSE_WHEELDOWN": "nul"
             }
         },
         "name": "WiimoteNew"
@@ -356,8 +356,8 @@
                 "MOUSE_LCLICK": "`Click 0`",
                 "MOUSE_RCLICK": "`Click 1`",
                 "MOUSE_MCLICK": "`Click 2`",
-                "MOUSE_WHEELUP": "",
-                "MOUSE_WHEELDOWN": ""
+                "MOUSE_WHEELUP": "nul",
+                "MOUSE_WHEELDOWN": "nul"
             }
         },
         "name": "GCPadNew"

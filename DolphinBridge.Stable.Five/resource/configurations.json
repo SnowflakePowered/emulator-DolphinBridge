@@ -1,8 +1,8 @@
 [
     {
         "boolean": {
-            "true": "true",
-            "false": "false"
+            "true": "True",
+            "false": "False"
         },
         "filename": "Dolphin.ini",
         "templateid": "DolphinCore",
@@ -491,8 +491,8 @@
     },
     {
         "boolean": {
-            "true": "enabled",
-            "false": "disabled"
+            "true": "True",
+            "false": "False"
         },
         "filename": "gfx.ini",
         "templateid": "DolphinGFX",
