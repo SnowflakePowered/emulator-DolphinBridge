@@ -63,13 +63,15 @@ namespace DolphinBridge.Stable.Five
             string coreCfg = this.CompileConfiguration(this.ConfigurationTemplates[DolphinEmulator.dolphinCoreTemplate], coreConfigProfile, game);
 
             var _core_backend = this.ConfigurationFlagStore.GetValue(game, "video_backend", ConfigurationFlagTypes.SELECT_FLAG);
-            string gfxBackend = this.ConfigurationFlags["video_backend"].SelectValues[_core_backend].Value;
 
             string gfxCfg = this.CompileConfiguration(this.ConfigurationTemplates[DolphinEmulator.dolphinGFXTemplate], gfxConfigProfile, game);
 
-            File.WriteAllText(Path.Combine(this.PluginDataPath, "gfx.ini"), gfxCfg);
+            File.WriteAllText(Path.Combine(this.PluginDataPath, "gfx.ini.tmp"), gfxCfg);
 
-            File.WriteAllText(Path.Combine(this.PluginDataPath, "core.ini"), coreCfg);
+            File.WriteAllText(Path.Combine(this.PluginDataPath, "Dolphin.ini.tmp"), coreCfg);
+            /* Make sure there's no leftover tmp files that will be appended to */
+            File.Delete(Path.Combine(this.PluginDataPath, "WiimoteNew.ini.tmp")); 
+            File.Delete(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"));
 
             if (platform.PlatformID == StonePlatforms.NINTENDO_WII)
             {
@@ -95,7 +97,39 @@ namespace DolphinBridge.Stable.Five
                     File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
             }
+            File.Create(Path.Combine(this.CoreInstance.EmulatorManager.AssembliesLocation, this.EmulatorAssembly.EmulatorID, "portable.txt")).Close(); //make sure we're not loading from My Documents.
+            string configFolderPath = Path.Combine(this.CoreInstance.EmulatorManager.AssembliesLocation, this.EmulatorAssembly.EmulatorID, "User", "Config");
 
+            if(File.Exists(Path.Combine(configFolderPath, "Dolphin.ini")))
+            {
+                File.Delete(Path.Combine(configFolderPath, "Dolphin.ini"));
+            }
+            File.Move(Path.Combine(this.PluginDataPath, "Dolphin.ini.tmp"), Path.Combine(configFolderPath, "Dolphin.ini"));
+
+            if (File.Exists(Path.Combine(configFolderPath, "GCPadNew.ini")))
+            {
+                File.Delete(Path.Combine(configFolderPath, "GCPadNew.ini"));
+            }
+            File.Move(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Path.Combine(configFolderPath, "GCPadNew.ini"));
+
+            if (platform.PlatformID == StonePlatforms.NINTENDO_WII)
+            {
+                if (File.Exists(Path.Combine(configFolderPath, "WiimoteNew.ini")))
+                {
+                    File.Delete(Path.Combine(configFolderPath, "WiimoteNew.ini"));
+                }
+                File.Move(Path.Combine(this.PluginDataPath, "WiimoteNew.ini.tmp"), Path.Combine(configFolderPath, "WiimoteNew.ini"));
+            }
+            string gfxBackend = this.ConfigurationFlags["video_backend"].SelectValues[_core_backend].Value;
+
+            string gfxConfigPrefix = gfxBackend == "OGL" ? "ogl" : "dx11";
+
+
+            if (File.Exists(Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini")))
+            {
+                File.Delete(Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini"));
+            }
+            File.Move(Path.Combine(this.PluginDataPath, "gfx.ini.tmp"), Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini"));
 
         }
         
