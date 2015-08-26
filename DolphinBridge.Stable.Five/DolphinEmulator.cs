@@ -81,7 +81,7 @@ namespace DolphinBridge.Stable.Five
                 }
                 for (int i = 5; i <= 8; i++)
                 {
-                    string controller = this.CompileController((i-4), platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
+                    string controller = this.CompileController(i, platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
                     File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
 
@@ -183,8 +183,6 @@ namespace DolphinBridge.Stable.Five
 
         public override string CompileController(int playerIndex, IPlatformInfo platformInfo, IControllerDefinition controllerDefinition, IControllerTemplate controllerTemplate, IGamepadAbstraction gamepadAbstraction, IInputTemplate inputTemplate, IGameInfo gameInfo)
         {
-
-            
             var controllerMappings = gamepadAbstraction.ProfileType == ControllerProfileType.KEYBOARD_PROFILE ?
                controllerTemplate.KeyboardControllerMappings : controllerTemplate.GamepadControllerMappings;
 
@@ -213,7 +211,7 @@ namespace DolphinBridge.Stable.Five
             if (deviceName.Equals(InputDeviceNames.KeyboardDevice, StringComparison.InvariantCultureIgnoreCase))
             {
                 controllerMappings["default"].KeyMappings["DEVICE"] = "DInput/0/Keyboard Mouse";
-                return base.CompileController(playerIndex, platformInfo, controllerDefinition, controllerTemplate,
+                return this.CompileController(playerIndex, platformInfo, controllerDefinition, controllerTemplate,
                     gamepadAbstraction, inputTemplate, controllerMappings, gameInfo);
             }
             string xinputDevice = "XInput/{0}/Gamepad";
@@ -244,12 +242,43 @@ namespace DolphinBridge.Stable.Five
                 controllerMappings["default"].KeyMappings["DEVICE"] =
                     String.Format(dintpuDevice, device.DI_ProductName, device.DeviceIndex);
             }
-            return base.CompileController(playerIndex, platformInfo, controllerDefinition, controllerTemplate, gamepadAbstraction, inputTemplate, controllerMappings, gameInfo);
+            return this.CompileController(playerIndex, platformInfo, controllerDefinition, controllerTemplate, gamepadAbstraction, inputTemplate, controllerMappings, gameInfo);
         }
 
+        public override string CompileController(int playerIndex, IPlatformInfo platformInfo, IControllerDefinition controllerDefinition, IControllerTemplate controllerTemplate, IGamepadAbstraction gamepadAbstraction, IInputTemplate inputTemplate, IReadOnlyDictionary<string, IControllerMapping> controllerMappings, IGameInfo gameInfo)
+        {
+            if (gamepadAbstraction.ProfileType == ControllerProfileType.NULL_PROFILE) return string.Empty;
+            var template = new StringBuilder(inputTemplate.StringTemplate);
+            foreach (IControllerInput input in controllerDefinition.ControllerInputs.Values)
+            {
+                string templateKey = controllerMappings["default"].InputMappings[input.InputName];
+                string inputSetting = gamepadAbstraction[input.GamepadAbstraction];
+                string emulatorValue = gamepadAbstraction.ProfileType == ControllerProfileType.KEYBOARD_PROFILE ?
+                    inputTemplate.KeyboardMappings.First().Value[inputSetting] : inputTemplate.GamepadMappings.First().Value[inputSetting];
+                template.Replace($"{{{templateKey}}}", emulatorValue);
+            }
+
+            if (platformInfo.PlatformID == StonePlatforms.NINTENDO_WII && controllerDefinition.ControllerID == "GCN_CONTROLLER")
+            {
+                template.Replace("{N}", (playerIndex - 4).ToString()); //Account for GCPad being in controller positions 5-8.
+            }
+            else
+            {
+                template.Replace("{N}", playerIndex.ToString()); //Player Index
+            }
+
+            foreach (var key in inputTemplate.TemplateKeys)
+            {
+                template.Replace($"{{{key}}}",
+                    controllerMappings["default"].KeyMappings.ContainsKey(key)
+                        ? controllerMappings["default"].KeyMappings[key]
+                        : inputTemplate.NoBind);
+            }
+            return template.ToString();
+        }
         /* Win32 Start */
         /* Win32 End */
-       
+
         public override void ShutdownEmulator()
         {
             this.dolphinInstance.CloseMainWindow();
