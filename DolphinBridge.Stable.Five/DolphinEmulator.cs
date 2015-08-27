@@ -86,7 +86,6 @@ namespace DolphinBridge.Stable.Five
                     string controller = this.CompileController(i, platform, this.InputTemplates[DolphinEmulator.dolphinInputGCPadTemplate], game);
                     File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
-
             }
 
             if (platform.PlatformID == StonePlatforms.NINTENDO_GCN)
@@ -97,6 +96,7 @@ namespace DolphinBridge.Stable.Five
                     File.AppendAllText(Path.Combine(this.PluginDataPath, "GCPadNew.ini.tmp"), Environment.NewLine + controller);
                 }
             }
+
             File.Create(Path.Combine(this.CoreInstance.EmulatorManager.AssembliesLocation, this.EmulatorAssembly.EmulatorID, "portable.txt")).Close(); //make sure we're not loading from My Documents.
             string configFolderPath = Path.Combine(this.CoreInstance.EmulatorManager.AssembliesLocation, this.EmulatorAssembly.EmulatorID, "User", "Config");
 
@@ -122,14 +122,14 @@ namespace DolphinBridge.Stable.Five
             }
             string gfxBackend = this.ConfigurationFlags["video_backend"].SelectValues[_core_backend].Value;
 
-            string gfxConfigPrefix = gfxBackend == "OGL" ? "ogl" : "dx11";
+            string gfxConfigSuffix = gfxBackend == "OGL" ? "opengl" : "dx11";
 
 
-            if (File.Exists(Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini")))
+            if (File.Exists(Path.Combine(configFolderPath, $"gfx_{gfxConfigSuffix}.ini")))
             {
-                File.Delete(Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini"));
+                File.Delete(Path.Combine(configFolderPath, $"gfx_{gfxConfigSuffix}.ini"));
             }
-            File.Move(Path.Combine(this.PluginDataPath, "gfx.ini.tmp"), Path.Combine(configFolderPath, $"gfx_{gfxConfigPrefix}.ini"));
+            File.Move(Path.Combine(this.PluginDataPath, "gfx.ini.tmp"), Path.Combine(configFolderPath, $"gfx_{gfxConfigSuffix}.ini"));
 
         }
         
@@ -272,7 +272,7 @@ namespace DolphinBridge.Stable.Five
             }
             else if (devices.Select(device => device.DI_ProductName).Contains(deviceName))
             {
-                var device = devices.Where(d => d.DI_ProductName == deviceName).First();
+                var device = devices.First(d => d.DI_ProductName == deviceName);
                 controllerMappings["default"].KeyMappings["DEVICE"] =
                     String.Format(dintpuDevice, device.DI_ProductName, device.DeviceIndex);
             }
