@@ -131,6 +131,16 @@ namespace DolphinBridge.Stable.Five
             }
             File.Move(Path.Combine(this.PluginDataPath, "gfx.ini.tmp"), Path.Combine(configFolderPath, $"gfx_{gfxConfigSuffix}.ini"));
 
+
+            ProcessStartInfo dolphinStart = new ProcessStartInfo(emulatorPath)
+            {
+                WorkingDirectory =
+                    Path.Combine(this.CoreInstance.EmulatorManager.GetAssemblyDirectory(this.EmulatorAssembly)),
+                Arguments = $@"-e {game.FileName}"
+            };
+
+            this.dolphinInstance = Process.Start(dolphinStart);
+
         }
         
 
@@ -301,7 +311,7 @@ namespace DolphinBridge.Stable.Five
                 template.Replace("{N}", playerIndex.ToString()); //Player Index
             }
 
-            foreach (var key in inputTemplate.TemplateKeys)
+            foreach (string key in inputTemplate.TemplateKeys)
             {
                 template.Replace($"{{{key}}}",
                     controllerMappings["default"].KeyMappings.ContainsKey(key)
@@ -315,7 +325,7 @@ namespace DolphinBridge.Stable.Five
 
         public override void ShutdownEmulator()
         {
-            this.dolphinInstance.CloseMainWindow();
+            this.dolphinInstance?.CloseMainWindow();
         }
 
         public override void HandlePrompt(string messagge)

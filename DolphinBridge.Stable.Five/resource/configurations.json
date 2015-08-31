@@ -113,7 +113,7 @@
             },
             "RenderToMain": {
                 "description": "Render to main window",
-                "defaultValue": true
+                "defaultValue": false
             },
             "RenderWindowXPos": {
                 "description": "description",
