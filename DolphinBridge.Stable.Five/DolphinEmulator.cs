@@ -151,7 +151,6 @@ namespace DolphinBridge.Stable.Five
             var core_speakerdata = this.ConfigurationFlagStore.GetValue(game, "speakerdata", ConfigurationFlagTypes.BOOLEAN_FLAG);
             dolphinCore.ConfigurationValues["WiimoteEnableSpeaker"] = core_speakerdata;
 
-
             var core_dualcore = this.ConfigurationFlagStore.GetValue(game, "dualcore", ConfigurationFlagTypes.BOOLEAN_FLAG);
             dolphinCore.ConfigurationValues["CPUThread"] = core_dualcore;
 
@@ -165,7 +164,7 @@ namespace DolphinBridge.Stable.Five
             dolphinCore.ConfigurationValues["DSPHLE"] = core_hle_audio;
 
             var core_cpu_oc = this.ConfigurationFlagStore.GetValue(game, "cpu_oc", ConfigurationFlagTypes.INTEGER_FLAG);
-            dolphinCore.ConfigurationValues["OverclockEnable"] = (core_cpu_oc == 100);
+            dolphinCore.ConfigurationValues["OverclockEnable"] = (core_cpu_oc != 100);
             dolphinCore.ConfigurationValues["Overclock"] = core_cpu_oc / 100d;
 
             var gfx_internal_res = this.ConfigurationFlagStore.GetValue(game, "internal_res", ConfigurationFlagTypes.SELECT_FLAG);
